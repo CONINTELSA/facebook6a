@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<h1>Editar el Sexo</h1>
+<h1>Editar el Sexo de los estudiantes</h1>
 <form action="/sexo/public/sexo/update" method="POST">
     <input type="hidden" name="id" value="<?php echo htmlspecialchars($sexo['id']); ?>">
     
