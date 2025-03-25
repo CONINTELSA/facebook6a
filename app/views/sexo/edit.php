@@ -17,7 +17,7 @@
     <input type="submit" value="Actualizar">
 </form>
 
-<a href="index.php">Volver al listado</a>
+<a href="index.php">Volver al listado de todo los estudiantes</a>
 
 </body>
 </html>
