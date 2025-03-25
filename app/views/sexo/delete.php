@@ -8,6 +8,7 @@
 <body>
 
 <h1>Editar el Sexo</h1>
+    <p>Todos los datos se podran cambiar despues</p>
 <form action="/sexo/public/sexo/delete" method="POST">
     <input type="hidden" name="id" value="<?php echo htmlspecialchars($sexo['id']); ?>">
     
