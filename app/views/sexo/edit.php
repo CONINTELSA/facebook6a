@@ -8,6 +8,7 @@
 <body>
 
 <h1>Editar el supueto Sexo</h1>
+    <p>Todos los datos editados se podran cambiar luego</p>
 <form action="/sexo/public/sexo/update" method="POST">
     <input type="hidden" name="id" value="<?php echo htmlspecialchars($sexo['id']); ?>">
     
