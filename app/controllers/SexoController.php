@@ -6,8 +6,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 // En SexoController.php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/sexo/config/database.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/sexo/app/models/Sexo.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/facebook6a/config/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/facebook6a/app/models/Sexo.php';
 
 
 
