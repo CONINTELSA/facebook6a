@@ -81,7 +81,7 @@
 <div class="container">
     <h1>Eliminar Sexo</h1>
     <p style="text-align: center; color: #555;">¿Estás seguro de que deseas eliminar este registro?</p>
-    <form action="/whatsapp6a/public/sexo/delete" method="POST">
+    <form action="/facebook6a/public/sexo/delete" method="POST">
         <input type="hidden" name="idsexo" value="<?php echo htmlspecialchars($sexo['idsexo']); ?>">
         
         <label for="nombre">Nombre:</label>

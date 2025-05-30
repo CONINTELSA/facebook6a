@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Direccions</title>
-    <link rel="stylesheet" href="/whatsapp6a/public/css/style.css">
+    <link rel="stylesheet" href="/facebook6a/public/css/style.css">
 </head>
 <body>
 
 <div class="container">
     <h1>Listar  Direcciones</h1>
-    <a href="/whatsapp6a/public/direccion/create"><button>Agregar</button></a>
+    <a href="/facebook6a/public/direccion/create"><button>Agregar</button></a>
 
     <table>
         <thead>
@@ -29,10 +29,10 @@
                         <td><?php echo htmlspecialchars($direccion['persona_nombres']); ?></td>
                         <td><?php echo htmlspecialchars($direccion['nombre']); ?></td>
                         <td>
-    <a href="/whatsapp6a/public/direccion/edit?iddireccion=<?php echo htmlspecialchars($direccion['iddireccion']); ?>">
+    <a href="/facebook6a/public/direccion/edit?iddireccion=<?php echo htmlspecialchars($direccion['iddireccion']); ?>">
         <button>Editar</button>
     </a>
-    <a href="/whatsapp6a/public/direccion/eliminar?iddireccion=<?php echo htmlspecialchars($direccion['iddireccion']); ?>" 
+    <a href="/facebook6a/public/direccion/eliminar?iddireccion=<?php echo htmlspecialchars($direccion['iddireccion']); ?>" 
        onclick="return confirm('¿Estás seguro de eliminar este registro?');">
         <button>Eliminar</button>
     </a>
@@ -48,6 +48,6 @@
     </table>
 </div>
 
-<script src="/whatsapp6a/public/js/script.js"></script>
+<script src="/facebook6a/public/js/script.js"></script>
 </body>
 </html>

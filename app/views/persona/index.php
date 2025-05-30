@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Personas</title>
-    <link rel="stylesheet" href="/whatsapp6a/public/css/style.css">
+    <link rel="stylesheet" href="/facebook6a/public/css/style.css">
 </head>
 <body>
 
 <div class="container">
     <h1>Lista de Personas</h1>
-    <a href="/whatsapp6a/public/persona/create"><button>Agregar</button></a>
+    <a href="/facebook6a/public/persona/create"><button>Agregar</button></a>
 
     <table>
         <thead>
@@ -35,13 +35,13 @@
                         <td><?php echo htmlspecialchars($persona['sexo_nombre']); ?></td> 
                         <td><?php echo htmlspecialchars($persona['estadocivil_nombre']); ?></td> 
                         <td>
-                            <a href="/whatsapp6a/public/persona/view?idpersona=<?php echo htmlspecialchars($persona['idpersona']); ?>">
+                            <a href="/facebook6a/public/persona/view?idpersona=<?php echo htmlspecialchars($persona['idpersona']); ?>">
                                 <button>View</button>
                             </a>
-                            <a href="/whatsapp6a/public/persona/edit?idpersona=<?php echo htmlspecialchars($persona['idpersona']); ?>">
+                            <a href="/facebook6a/public/persona/edit?idpersona=<?php echo htmlspecialchars($persona['idpersona']); ?>">
                                 <button>Editar</button>
                             </a>
-                            <a href="/whatsapp6a/public/persona/deleteForm?id=<?php echo htmlspecialchars($persona['idpersona']); ?>"
+                            <a href="/facebook6a/public/persona/deleteForm?id=<?php echo htmlspecialchars($persona['idpersona']); ?>"
                                onclick="return confirm('¿Estás seguro de eliminar esta persona?');">
                                 <button>Eliminar</button>
                             </a>
@@ -57,6 +57,6 @@
     </table>
 </div>
 
-<script src="/whatsapp6a/public/js/script.js"></script>
+<script src="/facebook6a/public/js/script.js"></script>
 </body>
 </html>

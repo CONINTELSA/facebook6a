@@ -5,8 +5,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 // En SexoController.php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/whatsapp6a/config/database.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/whatsapp6a/app/models/Sexo.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/facebook6a/config/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/facebook6a/app/models/Sexo.php';
 
 
 

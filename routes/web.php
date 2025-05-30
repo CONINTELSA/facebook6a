@@ -9,7 +9,7 @@ require_once '../app/controllers/TelefonoController.php';
 require_once '../app/controllers/EstadocivilController.php';
 
 $requestUri = $_SERVER["REQUEST_URI"];
-$basePath = '/whatsapp6a/public/';
+$basePath = '/facebook6a/public/';
 // Remover el prefijo basePath
 $route = str_replace($basePath, '', $requestUri);
 $route = strtok($route, '?'); // Quitar parámetros GET

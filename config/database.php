@@ -1,9 +1,9 @@
 <?php
 class Database {
     private $host = "localhost";
-    private $db_name = "whatsapp6a";
-    private $username = "whatsapp6a";
-    private $password = "whatsapp6a";
+    private $db_name = "facebook6a";
+    private $username = "facebook6a";
+    private $password = "facebook6a";
     private $conn;
 
     public function getConnection() {

@@ -4,10 +4,10 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // En TelefonoController.php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/whatsapp6a/config/database.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/whatsapp6a/app/models/Telefono.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/facebook6a/config/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/facebook6a/app/models/Telefono.php';
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/whatsapp6a/app/models/Persona.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/facebook6a/app/models/Persona.php';
 class TelefonoController {
     private $telefono;
     private $db;
