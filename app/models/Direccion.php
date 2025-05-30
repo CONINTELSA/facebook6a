@@ -14,7 +14,8 @@ class Direccion {
         $this->conn = $db;
     }
 
-    // Crear una nueva dirección
+
+    // Crear un nuevo teléfono
     public function create() {
         try {
             $query = "INSERT INTO " . $this->table_name . " (idpersona, nombre)
@@ -34,25 +35,68 @@ class Direccion {
         }
     }
 
-    // Leer todas las direcciones
-    public function read() {
+
+    // Leer todos los teléfonos
+    public function read1() {
         try {
-            $query = "SELECT * FROM " . $this->table_name;
+            $query = "SELECT d.iddireccion, d.idpersona, d.nombre, 
+                             p.nombres AS persona_nombres, p.apellidos AS persona_apellidos
+                      FROM " . $this->table_name . " d
+                      LEFT JOIN persona p ON d.idpersona = p.idpersona";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (PDOException $e) {
-            error_log("Error en read() para direccion: " . $e->getMessage());
+            error_log("Error en read1() para direccion: " . $e->getMessage());
             return [];
         }
     }
 
-    // Leer una sola dirección por ID
+    public function getAll() {
+         try {
+            $query = "SELECT d.iddireccion, d.idpersona, d.nombre, 
+                             p.nombres AS persona_nombres, p.apellidos AS persona_apellidos
+                      FROM " . $this->table_name . " d
+                      LEFT JOIN persona p ON d.idpersona = p.idpersona";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Error en getAll() para direccion: " . $e->getMessage());
+            return [];
+        }
+    }
+
+
+
+    // Leer todos los teléfonos
+    public function read() {
+        try {
+            $query = "SELECT d.iddireccion, d.idpersona, d.nombre, 
+                             p.nombres AS persona_nombres, p.apellidos AS persona_apellidos
+                      FROM " . $this->table_name . " d
+                      LEFT JOIN persona p ON d.idpersona = p.idpersona";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            error_log("Error en read() para dirección: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    // Leer un solo teléfono por ID
     public function readOne() {
         try {
-            $query = "SELECT * FROM " . $this->table_name . " WHERE iddireccion = :iddireccion LIMIT 1";
+            $query = "SELECT d.iddireccion, d.idpersona, d.nombre, 
+                             p.nombres AS persona_nombres, p.apellidos AS persona_apellidos
+                      FROM " . $this->table_name . " d
+                      LEFT JOIN persona p ON d.idpersona = p.idpersona
+                      WHERE d.iddireccion = :iddireccion LIMIT 1";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":iddireccion", $this->iddireccion, PDO::PARAM_INT);
             $stmt->execute();
@@ -65,7 +109,7 @@ class Direccion {
         }
     }
 
-    // Actualizar una dirección
+    // Actualizar un teléfono
     public function update() {
         try {
             $query = "UPDATE " . $this->table_name . " SET
@@ -88,7 +132,7 @@ class Direccion {
         }
     }
 
-    // Eliminar una dirección
+    // Eliminar un teléfono
     public function delete() {
         try {
             if (empty($this->iddireccion)) {
@@ -101,7 +145,7 @@ class Direccion {
             $stmt->bindParam(":iddireccion", $this->iddireccion, PDO::PARAM_INT);
 
             if ($stmt->execute()) {
-                error_log("Dirección con ID " . $this->iddireccion . " eliminada correctamente.");
+                error_log("Teléfono con ID " . $this->iddireccion . " eliminado correctamente.");
                 return true;
             } else {
                 error_log("Error en delete() para direccion: La consulta no se ejecutó correctamente.");
@@ -114,10 +158,14 @@ class Direccion {
         }
     }
 
-    // Leer todas las direcciones asociadas a una persona específica
+    // Leer todos los teléfonos asociados a una persona específica
     public function readByPersona($idpersona) {
         try {
-            $query = "SELECT * FROM " . $this->table_name . " WHERE idpersona = :idpersona";
+            $query = "SELECT d.iddireccion, d.idpersona, d.nombre, 
+                             p.nombres AS persona_nombres, p.apellidos AS persona_apellidos
+                      FROM " . $this->table_name . " d
+                      LEFT JOIN persona p ON d.idpersona = p.idpersona
++                      WHERE d.idpersona = :idpersona";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":idpersona", $idpersona, PDO::PARAM_INT);
             $stmt->execute();

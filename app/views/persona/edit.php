@@ -8,7 +8,7 @@
 <body>
 
 <h1>Editar Persona</h1>
-<form action="/apple5a/public/persona/update" method="POST">
+<form action="/whatsapp6a/public/persona/update" method="POST">
     <input type="hidden" name="idpersona" value="<?php echo htmlspecialchars($persona['idpersona']); ?>">
 
     <label for="nombres">Nombres:</label>
@@ -58,4 +58,4 @@
 <a href="index">Volver al listado</a>
 
 </body>
-</html>
+</html

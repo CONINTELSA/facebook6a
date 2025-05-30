@@ -26,6 +26,13 @@ class Sexo {
     }
 
 
+ public function getAll() {
+        // Conexión a la base de datos
+        $query = $this->conn->query("SELECT idsexo, nombre FROM sexo");
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 public function read() {
     try {
         $query = "SELECT * FROM " . $this->table_name;
@@ -45,9 +52,9 @@ public function read() {
      // Leer un solo sexo por ID
     public function readOne() {
         try {
-            $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id LIMIT 1";
+            $query = "SELECT * FROM " . $this->table_name . " WHERE idsexo = :idsexo LIMIT 1";
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
+            $stmt->bindParam(":idsexo", $this->idsexo, PDO::PARAM_INT);
             $stmt->execute();
 
             return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -60,10 +67,10 @@ public function read() {
     // Actualizar un sexo
     public function update() {
         try {
-            $query = "UPDATE " . $this->table_name . " SET nombre = :nombre WHERE id = :id";
+            $query = "UPDATE " . $this->table_name . " SET nombre = :nombre WHERE idsexo = :idsexo";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":nombre", $this->nombre, PDO::PARAM_STR);
-            $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
+            $stmt->bindParam(":idsexo", $this->idsexo, PDO::PARAM_INT);
 
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -75,22 +82,19 @@ public function read() {
     // Eliminar un sexo
     public function delete() {
         try {
-            if (empty($this->id)) {
+            if (empty($this->idsexo)) {
                 return false;
             }
-	            error_log("Intentando eliminar el ID: " . $this->id);
-
-
-
+	         error_log("Intentando eliminar el ID: " . $this->idsexo);
 
 	  // Preparar la consulta
-        $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
+        $query = "DELETE FROM " . $this->table_name . " WHERE idsexo = :idsexo";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
+        $stmt->bindParam(":idsexo", $this->idsexo, PDO::PARAM_INT);
 	
 // Ejecutar la consulta
         if ($stmt->execute()) {
-            error_log("Registro con ID " . $this->id . " eliminado correctamente.");
+            error_log("Registro con ID " . $this->idsexo . " eliminado correctamente.");
             return true;
         } else {
             error_log("Error en delete(): La consulta no se ejecutó correctamente.");

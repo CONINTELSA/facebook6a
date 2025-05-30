@@ -34,25 +34,72 @@ class Telefono {
         }
     }
 
+
     // Leer todos los teléfonos
-    public function read() {
+    public function read1() {
         try {
-            $query = "SELECT * FROM " . $this->table_name;
+            $query = "SELECT t.idtelefono, t.idpersona, t.numero,
+                             p.nombres AS persona_nombres, p.apellidos AS persona_apellidos
+                      FROM " . $this->table_name . " t
+                      LEFT JOIN persona p ON t.idpersona = p.idpersona";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (PDOException $e) {
-            error_log("Error en read() para telefono: " . $e->getMessage());
+            error_log("Error en read1() para telefono: " . $e->getMessage());
             return [];
         }
     }
 
+public function getAll() {
+        try {
+            $query = "SELECT t.idtelefono, t.idpersona, t.numero,
+                             p.nombres AS persona_nombres, p.apellidos AS persona_apellidos
+                      FROM " . $this->table_name . " t
+                      LEFT JOIN persona p ON t.idpersona = p.idpersona";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Error en getAll() para telefono: " . $e->getMessage());
+            return [];
+        }
+    }
+
+
+
+    // Leer todos los teléfonos
+    public function read() {
+        try {
+            $query = "SELECT t.idtelefono, t.idpersona, t.numero,
+                             p.nombres AS persona_nombres, p.apellidos AS persona_apellidos
+                      FROM " . $this->table_name . " t
+                      LEFT JOIN persona p ON t.idpersona = p.idpersona";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            error_log("Error en read() para teléfono: " . $e->getMessage());
+            return [];
+        }
+    }
+
+
+   
+
+
     // Leer un solo teléfono por ID
     public function readOne() {
         try {
-            $query = "SELECT * FROM " . $this->table_name . " WHERE idtelefono = :idtelefono LIMIT 1";
+            $query = "SELECT t.idtelefono, t.idpersona, t.numero,
+                             p.nombres AS persona_nombres, p.apellidos AS persona_apellidos
+                      FROM " . $this->table_name . " t
+                      LEFT JOIN persona p ON t.idpersona = p.idpersona
+                      WHERE t.idtelefono = :idtelefono LIMIT 1";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":idtelefono", $this->idtelefono, PDO::PARAM_INT);
             $stmt->execute();
@@ -117,7 +164,11 @@ class Telefono {
     // Leer todos los teléfonos asociados a una persona específica
     public function readByPersona($idpersona) {
         try {
-            $query = "SELECT * FROM " . $this->table_name . " WHERE idpersona = :idpersona";
+            $query = "SELECT t.idtelefono, t.idpersona, t.numero,
+                             p.nombres AS persona_nombres, p.apellidos AS persona_apellidos
+                      FROM " . $this->table_name . " t
+                      LEFT JOIN persona p ON t.idpersona = p.idpersona
+                      WHERE t.idpersona = :idpersona";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":idpersona", $idpersona, PDO::PARAM_INT);
             $stmt->execute();
@@ -131,3 +182,5 @@ class Telefono {
     }
 }
 ?>
+
+

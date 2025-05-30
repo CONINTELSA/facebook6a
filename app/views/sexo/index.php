@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Sexos</title>
-    <link rel="stylesheet" href="/sexo/public/css/style.css">
+    <title>Listar Sexos</title>
+    <link rel="stylesheet" href="/whatsapp6a/public/css/style.css">
 </head>
 <body>
 
 <div class="container">
-    <h1>Listado de los  Sexos</h1>
-    <a href="/facebook6a/app/views/sexo/create.php"><button>Agregar Sexo</button></a>
+    <h1>Listar  Sexos</h1>
+    <a href="/whatsapp6a/app/views/sexo/create.php"><button>Agregar</button></a>
 
     <table>
         <thead>
@@ -24,13 +24,13 @@
             <?php if (!empty($sexos) && is_array($sexos)): ?>
                 <?php foreach ($sexos as $sexo): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($sexo['id']); ?></td>
+                        <td><?php echo htmlspecialchars($sexo['idsexo']); ?></td>
                         <td><?php echo htmlspecialchars($sexo['nombre']); ?></td>
                         <td>
-    <a href="/facebook6a/public/sexo/edit?id=<?php echo htmlspecialchars($sexo['id']); ?>">
+    <a href="/whatsapp6a/public/sexo/edit?idsexo=<?php echo htmlspecialchars($sexo['idsexo']); ?>">
         <button>Editar</button>
     </a>
-    <a href="/facebook6a/public/sexo/eliminar?id=<?php echo htmlspecialchars($sexo['id']); ?>" 
+    <a href="/whatsapp6a/public/sexo/eliminar?idsexo=<?php echo htmlspecialchars($sexo['idsexo']); ?>" 
        onclick="return confirm('¿Estás seguro de eliminar este registro?');">
         <button>Eliminar</button>
     </a>
@@ -46,6 +46,7 @@
     </table>
 </div>
 
-<script src="/facebook6a/public/js/script.js"></script>
+<script src="/whatsapp6a/public/js/script.js"></script>
 </body>
 </html>
+

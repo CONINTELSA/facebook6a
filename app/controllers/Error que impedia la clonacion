@@ -1,0 +1,74 @@
+<?php
+require_once '../config/database.php';
+require_once '../app/models/Sexo.php';
+
+class SexoController {
+    private $sexo;
+    private $db;
+
+    public function __construct() {
+        $this->db = (new Database())->getConnection();
+        $this->sexo = new Sexo($this->db);
+    }
+
+    // Mostrar todos los sexos
+    public function index() {
+        $sexos = $this->sexo->read();
+        require_once '../app/views/sexo/index.php';
+    }
+
+public function create() {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre'])) {
+
+echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
+    die(); // Detiene la ejecución para ver la salida
+
+        $this->sexo->nombre = trim($_POST['nombre']);
+
+        if ($this->sexo->create()) {
+            header('Location: /sexo/app/views/sexo/index.php'); // Redirige a la lista
+            exit();
+        } else {
+            echo "Error al crear el registro.";
+        }
+    } else {
+        echo "Solicitud no válida.";
+    }
+
+
+}
+    // Editar un sexo existente
+    public function edit($id) {
+        $this->sexo->id = $id;
+        $stmt = $this->sexo->readOne();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$row) {
+            die("El registro no existe.");
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nombre'])) {
+            $this->sexo->nombre = trim($_POST['nombre']);
+            if ($this->sexo->update()) {
+                header('Location: index.php?msg=updated');
+                exit;
+            }
+        }
+        require_once '../app/views/sexo/edit.php';
+    }
+
+    // Eliminar un sexo
+    public function delete($id) {
+        $this->sexo->id = $id;
+        if ($this->sexo->delete()) {
+            header('Location: index.php?msg=deleted');
+            exit;
+        } else {
+            header('Location: index.php?msg=error');
+            exit;
+        }
+    }
+}
+?>

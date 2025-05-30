@@ -3,8 +3,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 // En estadocivilController.php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/apple5a/config/database.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/apple5a/app/models/Estadocivil.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/whatsapp6a/config/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/whatsapp6a/app/models/Estadocivil.php';
 
 class estadocivilController {
     private $estadocivil;
@@ -42,6 +42,8 @@ class estadocivilController {
         }
         die();  // Detener la ejecución para ver los mensajes
     }
+
+    
 
     public function edit($idestadocivil) {
         // Pasar el ID al modelo antes de llamar a readOne()
@@ -92,14 +94,14 @@ class estadocivilController {
     // Eliminar un estado civil
     public function delete() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['id'])) {
-                $this->estadocivil->idestadocivil = $_POST['id'];
+            if (isset($_POST['idestadocivil'])) {
+                $this->estadocivil->idestadocivil = $_POST['idestadocivil'];
                 if ($this->estadocivil->delete()) {
                     echo "Estado Civil borrado exitosamente";
-                    header('Location: index.php?msg=deleted');
+                    header('Location: index?msg=deleted');
                     exit;
                 } else {
-                    header('Location: index.php?msg=error');
+                    header('Location: index?msg=error');
                     exit;
                 }
             } else {
@@ -110,7 +112,22 @@ class estadocivilController {
         }
         die();  // Detener la ejecución para ver los mensajes
     }
+
+    public function api() {
+
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
+
+        $estadosciviles = $this->estadocivil->getAll();
+        header('Content-Type: application/json');
+        echo json_encode($estadosciviles);
+        exit;
+    }
 }
+
+
+
 
 /// Manejo de la acción en la URL
 if (isset($_GET['action'])) {
@@ -137,6 +154,9 @@ if (isset($_GET['action'])) {
         case 'delete':
             $controller->delete();
             break;
+        case 'api':
+            $controller->api();
+            break;
         default:
             echo "Acción no válida.";
             break;
@@ -146,3 +166,5 @@ if (isset($_GET['action'])) {
    // $controller->index(); // Mostrar la lista por defecto
 }
 ?>
+
+
